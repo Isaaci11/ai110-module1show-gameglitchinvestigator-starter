@@ -49,7 +49,8 @@ def check_guess(guess, secret):
 
 def update_score(current_score: int, outcome: str, attempt_number: int):
     if outcome == "Win":
-        points = 100 - 10 * (attempt_number + 1) #FIXME Score is not calculated correctly
+        #FIXME Score is not calculated correctly
+        points = 100 - 10 * (attempt_number + 1)
         if points < 10:
             points = 10
         return current_score + points
@@ -155,7 +156,8 @@ if submit:
     else:
         st.session_state.history.append(guess_int)
 
-        if st.session_state.attempts % 2 == 0: #FIXME on even attempts the secret is casted as a string and the comparison fails
+        #FIXME on even attempts the secret is casted as a string and the comparison fails
+        if st.session_state.attempts % 2 == 0:
             secret = str(st.session_state.secret)
         else:
             secret = st.session_state.secret
