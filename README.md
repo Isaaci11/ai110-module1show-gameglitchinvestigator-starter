@@ -44,10 +44,6 @@ A number guessing game where the player tries to guess a randomly generated secr
 - Added a strict integer check in `parse_guess()` to reject any input containing a decimal point as invalid rather than flooring it.
 - Added session-state resets for history, attempts, and score when "New Game" is clicked or difficulty changes.
 
-## Demo
-
-![Winning screen showing score 100 after a correct first-attempt guess](artifacts/winning%20screen%20.png)
-
 ## Stretch Features
 
 - [x] **pytest test suite** — `tests/test_game_logic.py` covers `parse_guess`, `check_guess`, `update_score`, and `get_range_for_difficulty` with edge-case tests (first-attempt win, decimal rejection, invalid input, score floor at zero).
