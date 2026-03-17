@@ -44,7 +44,19 @@
 
 ---
 
-### 5. Bug explanations
+### 5. Git push upstream issue
+**User:** Tried `git push` and `git push origin` on the `dev` branch — both failed with "The current branch dev has no upstream branch."
+
+**Claude:** Explained the issue and fixed it:
+- **Root cause:** New local branches have no linked remote branch until you explicitly set one. Git doesn't know where to push.
+- **Fix used:** `git push --set-upstream origin dev` — pushes the branch and sets the tracking relationship.
+- **To avoid in future:**
+  - First push of any new branch: `git push -u origin <branch>`
+  - Or globally: `git config --global push.autoSetupRemote true` — makes plain `git push` work automatically on new branches.
+
+---
+
+### 6. Bug explanations
 **User:** From your view of the code base I was able to get a set of unseen bugs and an explanation to why they were not working — explained these bugs found during testing.
 
 **Claude:** Explained each bug with the specific code responsible:
