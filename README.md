@@ -46,7 +46,45 @@ A number guessing game where the player tries to guess a randomly generated secr
 
 ## Demo
 
-![Winning screen showing score 100 after a correct first-attempt guess](artifacts/winning%20screen%20.png)
+### Bug 1 — Invalid input consumes an attempt
+Non-numeric input (e.g. `*`) triggers "That is not a number." but still decrements the attempt counter. The history array fills with empty strings `""` for each invalid submission.
+
+![Invalid input counted as attempt, history showing empty string entries](artifacts/000.png)
+
+---
+
+### Bug 2 — Inverted hints
+Secret is `16`, player guesses `15` (too low), but the game says **"Go LOWER!"** — the exact opposite of the correct direction.
+
+![Inverted hint: guessed 15 with secret 16, game says Go LOWER](artifacts/003.png)
+
+---
+
+### Bug 3 — Decimal inputs accepted as a win
+Player enters `21.1` when the secret is `21`. The floor logic silently converts it to `21` and awards a win, bypassing the integer-only requirement.
+
+![Decimal 21.1 accepted as correct answer for secret 21](artifacts/004.png)
+
+---
+
+### Bug 4 — Score deducted on first correct guess
+A first-attempt correct guess should score `100`, but the deduction runs before the win check, resulting in a score of `70` instead.
+
+![First-attempt correct guess scores 70 instead of 100](artifacts/001.png)
+
+---
+
+### Bug 5 — Game state not cleared on new game
+After winning, clicking "New Game" does not reset guess history. The previous round's guesses remain visible alongside the new game's state.
+
+![Previous game history persists after clicking New Game](artifacts/002.png)
+
+---
+
+### Fixed — Clean win after all bugs resolved
+All five bugs fixed: hints are correct, score awards `100` on a first-attempt win (or decrements correctly on subsequent attempts), invalid input is rejected without costing an attempt, decimals are rejected, and state resets cleanly on new game.
+
+![Winning screen showing correct score after fixed game](artifacts/winning%20screen%20.png)
 
 ## Stretch Features
 
